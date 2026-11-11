@@ -1,3 +1,6 @@
+#include "libft.h"
+#include <unistd.h>
+
 // *****************************
 // CHECKING FT_ISALPHA.
 // *****************************
