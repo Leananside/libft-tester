@@ -1,5 +1,16 @@
 #include "libft.h"
+#include <string.h>
 #include <unistd.h>
+
+void ft_putstr(char *s)
+{
+	int i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+}
 
 // *****************************
 // CHECKING FT_ISALPHA.
@@ -17,7 +28,7 @@ static int check_isalpha(int i)
         expected = 0;
     if (ft_isalpha(i) != expected)
     {
-        write(1, "\tFAILURE", 8);
+        ft_putstr("\tFAILURE");
         return (0);
     }
     return (1);
@@ -30,11 +41,11 @@ static void ft_test_isalpha()
 
     success = 0;
     i = 0;
-    write(1, "Testing ft_isalpha:\n", 19);
+    ft_putstr("Testing ft_isalpha:\n");
     while (i < 128 && check_isalpha(i) == 1)
         i++;
     if (i == 128)
-        write(1, "\tSUCCESS\n\n", 10);
+        ft_putstr("\tSUCCESS\n\n");
 }
 
 // *****************************
@@ -52,7 +63,7 @@ static int check_isdigit(int i)
         expected = 0;
     if (ft_isdigit(i) != expected)
     {
-        write(1, "\tFAILURE", 8);
+        ft_putstr("\tFAILURE");
         return (0);
     }
     return (1);
@@ -65,11 +76,11 @@ static void ft_test_isdigit()
 
     success = 0;
     i = 0;
-    write(1, "Testing ft_isdigit:\n", 19);
+    ft_putstr("Testing ft_isdigit:\n");
     while (i < 128 && check_isdigit(i) == 1)
         i++;
     if (i == 128)
-        write(1, "\tSUCCESS\n\n", 10);
+        ft_putstr("\tSUCCESS\n\n");
 }
 
 // *****************************
@@ -89,7 +100,7 @@ static int check_isalnum(int i)
         expected = 0;
     if (ft_isalnum(i) != expected)
     {
-        write(1, "\tFAILURE", 8);
+        ft_putstr("\tFAILURE");
         return (0);
     }
     return (1);
@@ -102,11 +113,11 @@ static void ft_test_isalnum()
 
     success = 0;
     i = 0;
-    write(1, "Testing ft_isalnum:\n", 19);
+    ft_putstr("Testing ft_isalnum:\n");
     while (i < 128 && check_isalnum(i) == 1)
         i++;
     if (i == 128)
-        write(1, "\tSUCCESS\n\n", 10);
+        ft_putstr("\tSUCCESS\n\n");
 }
 
 // *****************************
@@ -124,7 +135,7 @@ static int check_isascii(int i)
         expected = 0;
     if (ft_isascii(i) != expected)
     {
-        write(1, "\tFAILURE", 8);
+        ft_putstr("\tFAILURE");
         return (0);
     }
     return (1);
@@ -137,11 +148,11 @@ static void ft_test_isascii()
 
     success = 0;
     i = 0;
-    write(1, "Testing ft_isascii:\n", 19);
+    ft_putstr("Testing ft_isascii:\n");
     while (i < 128 && check_isascii(i) == 1)
         i++;
     if (i == 128)
-        write(1, "\tSUCCESS\n\n", 10);
+        ft_putstr("\tSUCCESS\n\n");
 }
 
 // *****************************
@@ -159,7 +170,7 @@ static int check_isprint(int i)
         expected = 0;
     if (ft_isprint(i) != expected)
     {
-        write(1, "\tFAILURE", 8);
+        ft_putstr("\tFAILURE");
         return (0);
     }
     return (1);
@@ -172,11 +183,41 @@ static void ft_test_isprint()
 
     success = 0;
     i = 0;
-    write(1, "Testing ft_isprint:\n", 19);
+    ft_putstr("Testing ft_isprint:\n");
     while (i < 128 && check_isprint(i) == 1)
         i++;
     if (i == 128)
-        write(1, "\tSUCCESS\n\n", 10);
+        ft_putstr("\tSUCCESS\n\n");
+}
+
+/* ************************************************************************ */
+/*                                 FT_STRLEN                                */
+/* ************************************************************************ */
+
+static int check_strlen(char const *s)
+{
+	if (ft_strlen(s) != strlen(s))
+	{
+		ft_putstr("\tFAILURE");
+		ft_putstr((char *)s);
+		ft_putstr("\"\n");
+		return (0);
+	}
+	return (1);
+}
+
+static void ft_test_strlen(void)
+{
+	const char *cases[] = {"", "a", "hello", "hello world", "   ",
+            "tab\tand\nnewline", "0123456789012345678901234567890123456789", NULL};
+	int i;
+
+	ft_putstr("Testing ft_strlen:\n");
+	i = 0;
+	while (cases[i] && check_strlen(cases[i]) == 1)
+		i++;
+	if (cases[i] == NULL)
+		ft_putstr("\tSUCCESS\n\n");
 }
 
 // *****************************
@@ -192,7 +233,7 @@ static int check_toupper(int i)
         expected = i - 32;
     if (ft_toupper(i) != expected)
     {
-        write(1, "\tFAILURE", 8);
+        ft_putstr("\tFAILURE");
         return (0);
     }
     return (1);
@@ -205,11 +246,11 @@ static void ft_test_toupper()
 
     success = 0;
     i = 0;
-    write(1, "Testing ft_toupper:\n", 19);
+    ft_putstr("Testing ft_toupper:\n");
     while (i < 128 && check_toupper(i) == 1)
         i++;
     if (i == 128)
-        write(1, "\tSUCCESS\n\n", 10);
+        ft_putstr("\tSUCCESS\n\n");
 }
 
 // *****************************
@@ -225,7 +266,7 @@ static int check_tolower(int i)
         expected = i + 32;
     if (ft_tolower(i) != expected)
     {
-        write(1, "\tFAILURE", 8);
+        ft_putstr("\tFAILURE");
         return (0);
     }
     return (1);
@@ -238,11 +279,11 @@ static void ft_test_tower()
 
     success = 0;
     i = 0;
-    write(1, "Testing ft_tower:\n", 19);
+    ft_putstr("Testing ft_tolower:\n");
     while (i < 128 && check_tolower(i) == 1)
         i++;
     if (i == 128)
-        write(1, "\tSUCCESS\n\n", 10);
+        ft_putstr("\tSUCCESS\n\n");
 }
 
 void    ft_test_1(void)
