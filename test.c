@@ -12,6 +12,8 @@ void ft_putstr(char *s)
 	}
 }
 
+// TEST 1
+
 // *****************************
 // CHECKING FT_ISALPHA.
 // *****************************
@@ -190,36 +192,6 @@ static void ft_test_isprint()
         ft_putstr("\tSUCCESS\n\n");
 }
 
-/* ************************************************************************ */
-/*                                 FT_STRLEN                                */
-/* ************************************************************************ */
-
-static int check_strlen(char const *s)
-{
-	if (ft_strlen(s) != strlen(s))
-	{
-		ft_putstr("\tFAILURE");
-		ft_putstr((char *)s);
-		ft_putstr("\"\n");
-		return (0);
-	}
-	return (1);
-}
-
-static void ft_test_strlen(void)
-{
-	const char *cases[] = {"", "a", "hello", "hello world", "   ",
-            "tab\tand\nnewline", "0123456789012345678901234567890123456789", NULL};
-	int i;
-
-	ft_putstr("Testing ft_strlen:\n");
-	i = 0;
-	while (cases[i] && check_strlen(cases[i]) == 1)
-		i++;
-	if (cases[i] == NULL)
-		ft_putstr("\tSUCCESS\n\n");
-}
-
 // *****************************
 // CHECKING FT_TOUPPER.
 // *****************************
@@ -285,6 +257,39 @@ static void ft_test_tower()
     if (i == 128)
         ft_putstr("\tSUCCESS\n\n");
 }
+
+// TEST 2
+
+/* ************************************************************************ */
+/*                                 FT_STRLEN                                */
+/* ************************************************************************ */
+
+static int check_strlen(char const *s)
+{
+	if (ft_strlen(s) != strlen(s))
+	{
+		ft_putstr("\tFAILURE");
+		ft_putstr((char *)s);
+		ft_putstr("\"\n");
+		return (0);
+	}
+	return (1);
+}
+
+static void ft_test_strlen(void)
+{
+	const char *cases[] = {"", "a", "hello", "hello world", "   ",
+            "tab\tand\nnewline", "0123456789012345678901234567890123456789", NULL};
+	int i;
+
+	ft_putstr("Testing ft_strlen:\n");
+	i = 0;
+	while (cases[i] && check_strlen(cases[i]) == 1)
+		i++;
+	if (cases[i] == NULL)
+		ft_putstr("\tSUCCESS\n\n");
+}
+
 
 void    ft_test_1(void)
 {
